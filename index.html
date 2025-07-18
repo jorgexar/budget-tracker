@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Budget Tracker</title>
 </head>
-<body>
-    <h1>Current Total : <span id="totalBudget">2000</span></h1>
+<body style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+    <h1>Τρέχων σύνολο : <span id="totalBudget">2000</span></h1>
     <h1><span></span></h1>
     <h1><span></span></h1>
     <h1><span></span></h1>
@@ -14,31 +14,42 @@
    
     <div class="inputPanel">
         <div>
-            <h2>Νέο έσοδο</h2>
-            <label for="esodo">Ποσό</label>
-            <input type="number" name="esodo" id="esodo">
-            <label for="esodoComment">Περιγραφή</label>
-            <input type="text" name="esodoComment" id="esodoComment">
+            
+            <div >
+                <h2>Νέα συναλλαγή</h2>
+                <button style="background-color: rgb(85, 218, 145);" id="neoEsodo">Εσοδο</button>
+                <button style="background-color: rgb(218, 85, 107);" id="neoExodo">Εξοδο</button>
+            </div>
+            <br>
+            <div style="border:1px dashed black; padding: 10px;">
+            <label for="amount">Ποσό</label>
+            <input type="number" name="transactionAmount" id="transactionAmount" disabled>
+            <label for="transactionComment">Περιγραφή</label>
+            <input type="text" name="transactionComment" id="transactionComment" disabled>
 
 
-            <button id="confirmEsodo">Confirm</button>
+            <button id="confirmTransaction" disabled>Ολοκλήρωση συναλλαγής</button>
+            </div>
         </div>
-        <div>
-            <h2>Νέο έξοδο</h2>
-            <label for="exodo">Ποσό</label>
-            <input type="number" name="exodo" id="exodo">
-            <label for="exodoComment">Περιγραφή</label>
-            <input type="text" name="exodoComment" id="exodoComment">
-            <button id="confirmEsodo">Confirm</button>   
+        <div class="historySection">
+            <table class="historyTable">
+                <thead>
+                    <th>Ποσο</th>
+                    <th>Περιγραφη</th>
+                    <th>Ημερομηνια</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>+-10</td>
+                        <td>Test</td>
+                        <td>18/7/2025</td>
+                        <td>❌</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-    </div>
 
-    <div class="historyPanel">
-        <ul class="history">
-            <li>Καφες -2</li>
-            <li>18/7/2025 | Misthos +800</li>
-        </ul>
-    </div>
+   
      <script src="scripts.js"></script>
 </body>
 </html>
