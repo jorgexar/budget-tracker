@@ -3,9 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Budget Tracker</title>
 </head>
 <body>
-    Hello world
+    <h1>Current Total : <span id="totalBudget">2000</span></h1>
+    <h1><span></span></h1>
+    <h1><span></span></h1>
+    <h1><span></span></h1>
+    <h1><span></span></h1>
+   
+    <div class="inputPanel">
+        <div>
+            <h2>Νέο έσοδο</h2>
+            <label for="esodo">Ποσό</label>
+            <input type="number" name="esodo" id="esodo">
+            <label for="esodoComment">Περιγραφή</label>
+            <input type="text" name="esodoComment" id="esodoComment">
+
+
+            <button id="confirmEsodo">Confirm</button>
+        </div>
+        <div>
+            <h2>Νέο έξοδο</h2>
+            <label for="exodo">Ποσό</label>
+            <input type="number" name="exodo" id="exodo">
+            <label for="exodoComment">Περιγραφή</label>
+            <input type="text" name="exodoComment" id="exodoComment">
+            <button id="confirmEsodo">Confirm</button>   
+        </div>
+    </div>
+
+    <div class="historyPanel">
+        <ul class="history">
+            <li>Καφες -2</li>
+            <li>18/7/2025 | Misthos +800</li>
+        </ul>
+    </div>
+     <script src="scripts.js"></script>
 </body>
 </html>
