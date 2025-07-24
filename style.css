@@ -92,3 +92,20 @@ background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(56, 122, 83, 1) 50%
     color:#ffffff;
     cursor: pointer;
 }
+
+button{
+    outline: none;
+    border: none;
+    font-size: 20px;
+    padding: 10px 20px;
+    font-family: monospace;
+    border-radius: 0px 15px 0px 15px;
+    cursor: pointer;
+    opacity: 0.7;;
+    text-transform: uppercase;
+}
+button:hover{
+    opacity: 1;
+    transform: translateY(-5px);
+    box-shadow: 0px 0px 5px var(--green);
+}
