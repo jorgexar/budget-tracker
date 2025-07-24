@@ -16,36 +16,6 @@ const historyTableLogs = document.getElementById("historyTableLogs");
 const styledInput = document.querySelectorAll(".transInput");
 let currentTransactionType;
 
-neoEsodoBtn.addEventListener('click',(e)=>{
-    currentTransactionType = 'esodo';
-    disabledInputFields.forEach(inputField => {
-        inputField.disabled = false;
-    });
-    styledInput.forEach(input => {
-    input.style.borderColor = '#4bc269ff'; // Change this to any color you like
-  });
-
-})
-neoExodoBtn.addEventListener('click',(e)=>{
-    currentTransactionType = 'exodo';
-    disabledInputFields.forEach(inputField => {
-        inputField.disabled = false;
-    });
-    styledInput.forEach(input => {
-    input.style.borderColor = '#f34e4eff'; // Change this to any color you like
-  });
-    
-
-})
-
-transactionAmountInput.onkeydown = (event) => {
-    // Only allow if the e.key value is a number or if it's 'Backspace'
-    if(isNaN(event.key) && event.key !== 'Backspace') {
-        event.preventDefault();
-    }
-    };
-
-
 function depositToBudget(amount){
     totalBudgetAmount += amount;
     totalBudgetLabel.innerText = makeNumberReadable(totalBudgetAmount);
@@ -63,7 +33,7 @@ function setDefaultState(){
     neoEsodoBtn.disabled = false;
     neoExodoBtn.disabled = false;
     
-
+    
 }
 
 function createLogEntry(amount, description, date, mark){
@@ -72,12 +42,55 @@ function createLogEntry(amount, description, date, mark){
     let descriptionCell = row.insertCell(1);
     let dateCell = row.insertCell(2);
     let buttonCell = row.insertCell(3);
-
+    
     amountCell.innerHTML = mark + " " + makeNumberReadable(amount);
     descriptionCell.innerHTML = description;
     dateCell.innerHTML = date; 
     buttonCell.innerHTML = "❌";
 }    
+
+function makeNumberReadable(amount){
+        let amountArr = amount.toString().split("");
+    const dotTimes = Math.floor(amountArr.length / 3);
+    let startingLen = amountArr.length -1;
+    
+    for(let i=1; i<=dotTimes; i++){
+        amountArr[startingLen - (3 * i)]+=".";
+        
+    }
+    amountArr = amountArr.join("");
+    return(amountArr);
+    
+}
+neoEsodoBtn.addEventListener('click',(e)=>{
+    currentTransactionType = 'esodo';
+    disabledInputFields.forEach(inputField => {
+        inputField.disabled = false;
+    });
+    styledInput.forEach(input => {
+    input.style.borderColor = '#4bc269ff'; // Change this to any color you like
+  });
+
+})
+neoExodoBtn.addEventListener('click',(e)=>{
+    currentTransactionType = 'exodo';
+    disabledInputFields.forEach(inputField => {
+        inputField.disabled = false;
+    });
+    styledInput.forEach(input => {
+    input.style.borderColor = '#f34e4eff'; // Change this to any color you like
+});
+
+
+})
+
+transactionAmountInput.onkeydown = (event) => {
+    // Only allow if the e.key value is a number or if it's 'Backspace'
+    if(isNaN(event.key) && event.key !== 'Backspace') {
+        event.preventDefault();
+    }
+};
+
 
 
 
@@ -105,20 +118,6 @@ transConfirmButton.addEventListener("click", (event)=>{
 })
 
 
-function makeNumberReadable(amount){
-        let amountArr = amount.toString().split("");
-    const dotTimes = Math.floor(amountArr.length / 3);
-    let startingLen = amountArr.length -1;
-    
-    for(let i=1; i<=dotTimes; i++){
-        amountArr[startingLen - (3 * i)]+=".";
-        console.log(startingLen);
-    }
-    amountArr = amountArr.join("");
-    return(amountArr);
-    
-}
-console.log(makeNumberReadable(1000000000));
 
 totalBudgetLabel.innerText = totalBudgetAmount;
 
