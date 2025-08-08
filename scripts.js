@@ -63,7 +63,7 @@ function createLogEntry(amount, description, date, mark, expense){
             
             amountCell.innerHTML = transLog.t_mark + " " + transLog.t_amount;
             descriptionCell.innerHTML = transLog.t_desc;
-            dateCell.innerHTML = transLog.t_datedate; 
+            dateCell.innerHTML = transLog.t_date; 
             buttonCell.innerHTML = "❌";
             
             buttonCell.addEventListener("click",(e)=>{
