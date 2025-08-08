@@ -1,6 +1,11 @@
 let totalBudgetLabel = document.getElementById("totalBudget");
 let totalBudgetAmount = 0;
 
+const date = new Date();
+const day = date.getDate();
+const month = date.getMonth() +1;
+const year = date.getFullYear();
+const today = `${day}/${month}/${year}`;
 
 let neoEsodoBtn = document.getElementById("neoEsodo");
 let neoExodoBtn = document.getElementById("neoExodo");
@@ -36,17 +41,24 @@ function setDefaultState(){
     
 }
 
-function createLogEntry(amount, description, date, mark){
+function createLogEntry(amount, description, date, mark,expense){
     let row = historyTableLogs.insertRow(0);
+    
     let amountCell = row.insertCell(0);
     let descriptionCell = row.insertCell(1);
     let dateCell = row.insertCell(2);
     let buttonCell = row.insertCell(3);
-    
+    if(expense){
+        row.classList.add("expense");
+    }
     amountCell.innerHTML = mark + " " + makeNumberReadable(amount);
     descriptionCell.innerHTML = description;
     dateCell.innerHTML = date; 
     buttonCell.innerHTML = "❌";
+    
+    buttonCell.addEventListener("click",(e)=>{
+         buttonCell.parentNode.parentNode.removeChild(buttonCell.parentNode);
+    })
 }    
 
 function makeNumberReadable(amount){
@@ -62,6 +74,7 @@ function makeNumberReadable(amount){
     return(amountArr);
     
 }
+
 neoEsodoBtn.addEventListener('click',(e)=>{
     currentTransactionType = 'esodo';
     disabledInputFields.forEach(inputField => {
@@ -69,6 +82,7 @@ neoEsodoBtn.addEventListener('click',(e)=>{
     });
     styledInput.forEach(input => {
     input.style.borderColor = '#4bc269ff'; // Change this to any color you like
+    input.style.color = '#4bc269ff';
   });
 
 })
@@ -79,6 +93,7 @@ neoExodoBtn.addEventListener('click',(e)=>{
     });
     styledInput.forEach(input => {
     input.style.borderColor = '#f34e4eff'; // Change this to any color you like
+    input.style.color = '#f34e4eff';
 });
 
 
@@ -99,7 +114,8 @@ transConfirmButton.addEventListener("click", (event)=>{
     let transAmount = transactionAmountInput.valueAsNumber;
     let transDescription = transactionCommentInput.value;
     let mark;
-    let transDate = "22*7*2025"
+    let transDate = today;
+    let expense = false;
     if (!transAmount){
         return;
     }
@@ -109,10 +125,11 @@ transConfirmButton.addEventListener("click", (event)=>{
     }
     else{
         withdrawFromBudget(transAmount);
+        expense = true;
         mark = "-";
     }
     
-    createLogEntry(transAmount, transDescription,  transDate, mark);
+    createLogEntry(transAmount, transDescription,  transDate, mark,expense);
     setDefaultState();
     
 })
@@ -120,6 +137,5 @@ transConfirmButton.addEventListener("click", (event)=>{
 
 
 totalBudgetLabel.innerText = totalBudgetAmount;
-
 
 

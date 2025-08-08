@@ -1,5 +1,6 @@
 :root{
     --green :rgb(127, 201, 17);
+    --expense: rgb(255, 49, 49);
 }
 
 body{
@@ -67,6 +68,7 @@ body::after {
     padding: 20px;
     
 }
+
 label{
     color: var(--green);
 }
@@ -83,16 +85,21 @@ label{
     border-radius: 0 5px 0 5px;
 }
 
-tr:nth-child(even){
-background-color: #000f03;
+/* tr:nth-child(even){
+background-color: #000f03; */
 }
-tr:hover{
-   background: #000000;
-background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(56, 122, 83, 1) 50%, rgba(0, 41, 7, 1) 100%);
-    color:#ffffff;
+tr td:last-child:hover{
     cursor: pointer;
 }
-
+tr:hover{
+   filter: brightness(130%);
+}
+.expense{
+    color :var(--expense);
+    text-shadow: 0 0 5px var(--expense);
+    background-color: rgba(134, 10, 10, 0.233);
+    
+}
 button{
     outline: none;
     border: none;
