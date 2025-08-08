@@ -41,11 +41,7 @@ function setDefaultState(){
     
 }
 
-function printLogs(){
-    logsList.forEach(log => {
-    
-    });
-}
+
 function createLogEntry(amount, description, date, mark, expense){
     
     let transLog = {
