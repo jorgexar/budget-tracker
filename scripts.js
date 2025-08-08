@@ -20,7 +20,7 @@ const historyTable = document.getElementById("historyTable")
 const historyTableLogs = document.getElementById("historyTableLogs");
 const styledInput = document.querySelectorAll(".transInput");
 let currentTransactionType;
-
+let logsList = [];
 function depositToBudget(amount){
     totalBudgetAmount += amount;
     totalBudgetLabel.innerText = makeNumberReadable(totalBudgetAmount);
@@ -41,24 +41,45 @@ function setDefaultState(){
     
 }
 
-function createLogEntry(amount, description, date, mark,expense){
-    let row = historyTableLogs.insertRow(0);
+function printLogs(){
+    logsList.forEach(log => {
     
-    let amountCell = row.insertCell(0);
-    let descriptionCell = row.insertCell(1);
-    let dateCell = row.insertCell(2);
-    let buttonCell = row.insertCell(3);
-    if(expense){
-        row.classList.add("expense");
+    });
+}
+function createLogEntry(amount, description, date, mark, expense){
+    
+    let transLog = {
+        t_mark: mark,
+        t_amount: makeNumberReadable(amount),
+        t_desc: description,
+        t_date : date,
+        t_expense : expense,
+        printLog : function(){
+             let row = historyTableLogs.insertRow(0);
+            let amountCell = row.insertCell(0);
+            let descriptionCell = row.insertCell(1);
+            let dateCell = row.insertCell(2);
+            let buttonCell = row.insertCell(3);
+            
+            if(transLog.t_expense){
+                row.classList.add("expense");
+            }
+            
+            amountCell.innerHTML = transLog.t_mark + " " + transLog.t_amount;
+            descriptionCell.innerHTML = transLog.t_desc;
+            dateCell.innerHTML = transLog.t_datedate; 
+            buttonCell.innerHTML = "❌";
+            
+            buttonCell.addEventListener("click",(e)=>{
+                buttonCell.parentNode.parentNode.removeChild(buttonCell.parentNode);
+            })
+        }
     }
-    amountCell.innerHTML = mark + " " + makeNumberReadable(amount);
-    descriptionCell.innerHTML = description;
-    dateCell.innerHTML = date; 
-    buttonCell.innerHTML = "❌";
+    logsList.push(transLog);
+    console.log(logsList); 
+    transLog.printLog();
     
-    buttonCell.addEventListener("click",(e)=>{
-         buttonCell.parentNode.parentNode.removeChild(buttonCell.parentNode);
-    })
+    
 }    
 
 function makeNumberReadable(amount){

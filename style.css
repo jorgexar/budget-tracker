@@ -86,8 +86,8 @@ label{
 }
 
 /* tr:nth-child(even){
-background-color: #000f03; */
-}
+background-color: #000f03; }*/
+
 tr td:last-child:hover{
     cursor: pointer;
 }
