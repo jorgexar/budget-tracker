@@ -7,11 +7,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
-    <h1>Τρέχων σύνολο : <span id="totalBudget">2000</span></h1>
-    <h1><span></span></h1>
-    <h1><span></span></h1>
-    <h1><span></span></h1>
-    <h1><span></span></h1>
+    <h1>Τρέχων σύνολο : <span id="totalBudget"></span></h1>
+    
    
     <div class="mainFrame">
         <div class="inputPanel">
@@ -25,7 +22,7 @@
             <label for="amount">Ποσό</label>
             <input type="number" min=0 class="transInput" name="transactionAmount" id="transactionAmount" disabled>
             <label for="transactionComment">Περιγραφή</label>
-            <input type="text" class="transInput" name="transactionComment" id="transactionComment" disabled>
+            <input type="text" class="transInput" name="transactionComment" id="transactionComment" maxlength="20" disabled>
 
 
             <button id="confirmTransaction" disabled>Καταχώρηση</button>
@@ -35,48 +32,7 @@
             <div id="cardsDisplay">
 
             
-            <div class="card">
-                <div class="cardTop">
-                    <span id="amount">+875.000</span>
-                    <span id="delButton">❌</span>
-                </div>
-                <div class="cardMid">
-                    <span id="desc">Sold my lambo</span>
-                    <span id="date">9/8/2025</span>
-                </div>
-                <div class="cardBot">
-                    
-                </div>
             
-            </div>
-            <div class="card expense">
-                <div class="cardTop">
-                    <span id="amount">-500</span>
-                    <span id="delButton">❌</span>
-                </div>
-                <div class="cardMid">
-                    <span id="desc">I finally bought ps5 after a veeeery looong search</span>
-                    <span id="date">19/12/2025</span>
-                </div>
-                <div class="cardBot">
-                    
-                </div>
-            
-            </div>
-            <div class="card notExp">
-                <div class="cardTop">
-                    <span id="amount">-500</span>
-                    <span id="delButton">❌</span>
-                </div>
-                <div class="cardMid">
-                    <span id="desc">I </span>
-                    <span id="date">1/2/2025</span>
-                </div>
-                <div class="cardBot">
-                    
-                </div>
-            
-            </div>
         </div>
         </div>
         <!-- <div class="historySection">

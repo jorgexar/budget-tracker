@@ -16,18 +16,24 @@ const transConfirmButton = document.getElementById("confirmTransaction");
 
 const disabledInputFields = [transactionAmountInput, transactionCommentInput, transConfirmButton];
 
-const historyTable = document.getElementById("historyTable")
-const historyTableLogs = document.getElementById("historyTableLogs");
+// const historyTable = document.getElementById("historyTable")
+// const historyTableLogs = document.getElementById("historyTableLogs");
 const styledInput = document.querySelectorAll(".transInput");
 let currentTransactionType;
-let logsList = [];
+// let logsList = [];
 function depositToBudget(amount){
     totalBudgetAmount += amount;
     totalBudgetLabel.innerText = makeNumberReadable(totalBudgetAmount);
+    if(totalBudgetAmount > 0){
+        totalBudgetLabel.classList.remove('expense');
+    }
 }
 function withdrawFromBudget(amount){
     totalBudgetAmount -= amount;
     totalBudgetLabel.innerText = makeNumberReadable(totalBudgetAmount);
+    if(totalBudgetAmount <= 0){
+        totalBudgetLabel.classList.add('expense');
+    }
 }
 function setDefaultState(){
     transactionAmountInput.value = "";
@@ -121,7 +127,9 @@ function createCard(t_amount, t_desc, t_date, isExpense){
     cardMid.appendChild(desc);
     cardMid.appendChild(date);
     delButton.addEventListener("click",(e)=>{
-                delButton.parentNode.parentNode.parentNode.removeChild(delButton.parentNode.parentNode);
+            if (confirm("Are you sure you want to delete this log?") == true) {
+            delButton.parentNode.parentNode.parentNode.removeChild(delButton.parentNode.parentNode);
+            }                
             })
     pg.appendChild(card);
 
