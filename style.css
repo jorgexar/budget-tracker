@@ -28,7 +28,8 @@ body::after {
     z-index: 2;
     pointer-events: none;
 }
-
+.income-input { border-color: #4bc269; color: #4bc269; }
+.expense-input { border-color: #f34e4e; color: #f34e4e; }
 .mainFrame{
     
     margin: 0;
@@ -117,9 +118,14 @@ button:hover{
     font-weight: 10;
     font-family: monospace;
     font-size: 20px;
+    margin: 5px;
 }
+
 .card:hover{
     filter: brightness(120%);
+    border: 1px dashed;
+    transform: translateX(10px);
+    transition: 0.2s ease;
 }
 
 .cardTop,.cardMid,.cardBot{
@@ -132,4 +138,12 @@ button:hover{
 }
 #desc{
     text-decoration:underline;
+}
+#delButton{
+     filter: hue-rotate(-90deg);
+     transition: all 0.2s ease;
+}
+#delButton:hover{
+    cursor: pointer;
+   filter:hue-rotate(0deg);
 }
