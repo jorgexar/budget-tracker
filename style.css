@@ -34,40 +34,33 @@ body::after {
     margin: 0;
     padding: 0;
     display: flex;
-    height: 100vh;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* height: 100vh; */
     border: 1px solid var(--green);
-    padding: 10px;
+    
+    
+    
 
 }
 .inputPanel{
-    width: 30%;
     color: #fff;
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding: 10px 20px;
     border-right: 1px solid var(--green);
+    text-align: center;
+    gap: 5px;
+
+}
+.inputPanel label{
+    font-size: 18px;
+    font-weight: 600;
 }
 
-.historySection{
-    color:var(--green);
-    font-weight: 10;
-    font-family: monospace;
-    font-size: 20px;
-    
-}
-/* .historySection table td, .historySection table th{
-    border-right: 1px dashed var(--green);
-    border-bottom: 1px dashed var(--green);
-    width: 200px;
-    text-align: left;
-    padding: 5px 10px;
-} */
 
-.historySection td,th{
-    border: 1px solid green;
-    padding: 20px;
-    
-}
+
+
 
 label{
     color: var(--green);
@@ -85,19 +78,11 @@ label{
     border-radius: 0 5px 0 5px;
 }
 
-/* tr:nth-child(even){
-background-color: #000f03; }*/
 
-tr td:last-child:hover{
-    cursor: pointer;
-}
-tr:hover{
-   filter: brightness(130%);
-}
 .expense{
     color :var(--expense);
     text-shadow: 0 0 5px var(--expense);
-    background-color: rgba(134, 10, 10, 0.233);
+    background-color: rgba(134, 10, 10, 0.134);
     
 }
 button{
@@ -115,4 +100,36 @@ button:hover{
     opacity: 1;
     transform: translateY(-5px);
     box-shadow: 0px 0px 5px var(--green);
+}
+
+
+.playground{
+    /* width: 100%; */
+}
+.card{
+    border:1px solid rgba(50, 186, 134, 0.445);
+    display: flex;
+    flex-direction: column;
+    padding: 2px 5px;
+    gap: 10px;
+    
+    
+    font-weight: 10;
+    font-family: monospace;
+    font-size: 20px;
+}
+.card:hover{
+    filter: brightness(120%);
+}
+
+.cardTop,.cardMid,.cardBot{
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+#amount{
+    font-weight: 700;
+}
+#desc{
+    text-decoration:underline;
 }

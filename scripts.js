@@ -42,42 +42,93 @@ function setDefaultState(){
 }
 
 
-function createLogEntry(amount, description, date, mark, expense){
+// function createLogEntry(amount, description, date, mark, expense){
     
-    let transLog = {
-        t_mark: mark,
-        t_amount: makeNumberReadable(amount),
-        t_desc: description,
-        t_date : date,
-        t_expense : expense,
-        printLog : function(){
-             let row = historyTableLogs.insertRow(0);
-            let amountCell = row.insertCell(0);
-            let descriptionCell = row.insertCell(1);
-            let dateCell = row.insertCell(2);
-            let buttonCell = row.insertCell(3);
+//     let transLog = {
+//         t_mark: mark,
+//         t_amount: makeNumberReadable(amount),
+//         t_desc: description,
+//         t_date : date,
+//         t_expense : expense,
+//         printLog : function(){
+//              let row = historyTableLogs.insertRow(0);
+//             let amountCell = row.insertCell(0);
+//             let descriptionCell = row.insertCell(1);
+//             let dateCell = row.insertCell(2);
+//             let buttonCell = row.insertCell(3);
             
-            if(transLog.t_expense){
-                row.classList.add("expense");
-            }
+//             if(transLog.t_expense){
+//                 row.classList.add("expense");
+//             }
             
-            amountCell.innerHTML = transLog.t_mark + " " + transLog.t_amount;
-            descriptionCell.innerHTML = transLog.t_desc;
-            dateCell.innerHTML = transLog.t_date; 
-            buttonCell.innerHTML = "❌";
+//             amountCell.innerHTML = transLog.t_mark + " " + transLog.t_amount;
+//             descriptionCell.innerHTML = transLog.t_desc;
+//             dateCell.innerHTML = transLog.t_date; 
+//             buttonCell.innerHTML = "❌";
             
-            buttonCell.addEventListener("click",(e)=>{
-                buttonCell.parentNode.parentNode.removeChild(buttonCell.parentNode);
-            })
-        }
-    }
-    logsList.push(transLog);
-    console.log(logsList); 
-    transLog.printLog();
+//             buttonCell.addEventListener("click",(e)=>{
+//                 buttonCell.parentNode.parentNode.removeChild(buttonCell.parentNode);
+//             })
+//         }
+//     }
+//     logsList.push(transLog);
+//     console.log(logsList); 
+//     transLog.printLog();
     
     
-}    
+// }    
+function createCard(t_amount, t_desc, t_date, isExpense){
+    const pg = document.getElementById('pg');
+    const card = document.createElement('div')
+    const cardTop = document.createElement('div');
+    const cardMid = document.createElement('div');
+    const cardBot = document.createElement('div');
 
+    const amount = document.createElement('span');
+    const delButton = document.createElement('span');
+
+    const desc = document.createElement('span');
+    const date = document.createElement('span');
+
+    let formattedNumber = makeNumberReadable(t_amount);
+    
+    card.className = 'card';
+    cardTop.className = 'cardTop';
+    cardMid.className = 'cardMid';
+    cardBot.className = 'cardBot';
+
+    amount.id = 'amount';
+    delButton.id = 'delButton';
+    desc.id = 'desc';
+    date.id = 'date';
+    if(isExpense){
+        formattedNumber = "-"+formattedNumber;
+        card.classList.add("expense");
+    }else{
+        formattedNumber = "+"+formattedNumber;
+    }
+    amount.innerText= formattedNumber;
+    delButton.innerText = "❌"
+    desc.innerText = t_desc;
+    date.innerText = t_date;
+
+    card.appendChild(cardTop);
+    card.appendChild(cardMid);
+    card.appendChild(cardBot);
+
+    cardTop.appendChild(amount);
+    cardTop.appendChild(delButton);
+    cardMid.appendChild(desc);
+    cardMid.appendChild(date);
+    delButton.addEventListener("click",(e)=>{
+                delButton.parentNode.parentNode.parentNode.removeChild(delButton.parentNode.parentNode);
+            })
+    pg.appendChild(card);
+
+
+    console.log(card);
+}
+// createCard();
 function makeNumberReadable(amount){
         let amountArr = amount.toString().split("");
     const dotTimes = Math.floor(amountArr.length / 3);
@@ -139,14 +190,17 @@ transConfirmButton.addEventListener("click", (event)=>{
     if(currentTransactionType == "esodo"){
         depositToBudget(transAmount);
         mark = "+";
+        
     }
     else{
         withdrawFromBudget(transAmount);
         expense = true;
         mark = "-";
+       
     }
     
-    createLogEntry(transAmount, transDescription,  transDate, mark,expense);
+    // createLogEntry(transAmount, transDescription,  transDate, mark,expense);
+    createCard(transAmount, transDescription, transDate, expense);
     setDefaultState();
     
 })
